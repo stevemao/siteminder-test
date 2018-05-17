@@ -8,6 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Just based on the current requirements and my experiences, unit test on jsx is useless. When the requirement gets complex in the future and when we add stuff like redux, we can unit test the `connect()` logics etc. Or even better, write integration test.
 
+Why styled components are in the same file, `App.js`? Because the app now is small enough and when it's bigger, it's very easy to refactor. It's easier to put these components in one place when it's small.
+
 Other things that listed on the requirement should be done on the backend. EG: use Email providers
 
 Things that can be added in the future:
