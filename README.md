@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+`npm run build` to build the site
+
 `styled-components` is used for css-in-js
 
 `react-form` is used to make it easy to deal with potential future common form tasks. EG: no need to write `event.preventDefault()`, complex form validations and submit to the backend etc.
