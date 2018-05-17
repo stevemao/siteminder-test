@@ -50,6 +50,10 @@ const SendButton = styled.input`
   }
 `
 
+const Success = styled.div`
+  color: green;
+`
+
 const Small = styled.small`
   display: block;
   margin-top: 20px;
@@ -57,8 +61,15 @@ const Small = styled.small`
 `
 
 class App extends Component {
-  submit = (e) => {
-    e.preventDefault();
+  submit = () => {
+    this.setState( { success: true } )
+    setTimeout(() => {
+      this.setState( { success: false } )
+    }, 5000)
+  }
+
+  state = {
+    success: false
   }
 
   render() {
@@ -66,19 +77,28 @@ class App extends Component {
       <Wrapper>
         <header>
           <h1>Email a Friend</h1>
+          {
+            this.state.success &&
+              <Success>Your email has been sent!</Success>
+          }
         </header>
 
-        <Form render={({
-          submitForm
-        }) => (
-          <StyledForm onSubmit={submitForm}>
-            <TextInput field="to" placeholder="To" required type="email" />
-            <TextInput field="from" placeholder="From" required type="email" />
-            <TextInput field="subject" placeholder="Subject" required />
-            <Textarea field="note" placeholder="Note" required />
-            <SendButton type="submit" value="Send" />
-          </StyledForm>
-        )} />
+        <Form
+          onSubmit={this.submit}
+          render={({
+            submitForm
+          }) => (
+            <StyledForm onSubmit={submitForm}>
+              <TextInput field="to" placeholder="To" required type="email" />
+              <TextInput field="ccs" placeholder="CCs" />
+              <TextInput field="bccs" placeholder="BCCs" />
+              <TextInput field="from" placeholder="From" required type="email" />
+              <TextInput field="subject" placeholder="Subject" required />
+              <Textarea field="note" placeholder="Note" required />
+              <SendButton type="submit" value="Send" />
+            </StyledForm>
+          )}
+        />
 
         <Small>By sending, I affirm I am permitted to send this email.</Small>
       </Wrapper>
