@@ -62,6 +62,7 @@ const Small = styled.small`
 
 class App extends Component {
   submit = () => {
+    // TODO: hook up backend!
     this.setState( { success: true } )
     setTimeout(() => {
       this.setState( { success: false } )
