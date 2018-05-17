@@ -4,7 +4,7 @@ import { Form, Text, TextArea } from 'react-form';
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
   max-width: 575px;
   width: 100%;
 `
@@ -50,6 +50,12 @@ const SendButton = styled.input`
   }
 `
 
+const Small = styled.small`
+  display: block;
+  margin-top: 20px;
+  color: #888888;
+`
+
 class App extends Component {
   submit = (e) => {
     e.preventDefault();
@@ -73,6 +79,8 @@ class App extends Component {
             <SendButton type="submit" value="Send" />
           </StyledForm>
         )} />
+
+        <Small>By sending, I affirm I am permitted to send this email.</Small>
       </Wrapper>
     );
   }
