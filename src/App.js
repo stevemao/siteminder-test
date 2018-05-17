@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import { Form, Text, TextArea } from 'react-form';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -8,12 +9,12 @@ const Wrapper = styled.div`
   width: 100%;
 `
 
-const Form = styled.form`
+const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
 `
 
-const Input = styled.input`
+const TextInput = styled(Text)`
   height: 40px;
   border-radius: 3px;
   font-size: 1pc;
@@ -23,7 +24,7 @@ const Input = styled.input`
   box-sizing: border-box;
 `
 
-const Textarea = styled.textarea`
+const Textarea = styled(TextArea)`
   border-radius: 3px;
   height: 200pt;
   font-size: 1pc;
@@ -50,6 +51,10 @@ const SendButton = styled.input`
 `
 
 class App extends Component {
+  submit = (e) => {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <Wrapper>
@@ -57,13 +62,17 @@ class App extends Component {
           <h1>Email a Friend</h1>
         </header>
 
-        <Form>
-          <Input placeholder="To" />
-          <Input placeholder="From" />
-          <Input placeholder="Subject" />
-          <Textarea placeholder="Note" />
-          <SendButton type="submit" value="Send" />
-        </Form>
+        <Form render={({
+          submitForm
+        }) => (
+          <StyledForm onSubmit={submitForm}>
+            <TextInput field="to" placeholder="To" required type="email" />
+            <TextInput field="from" placeholder="From" required type="email" />
+            <TextInput field="subject" placeholder="Subject" required />
+            <Textarea field="note" placeholder="Note" required />
+            <SendButton type="submit" value="Send" />
+          </StyledForm>
+        )} />
       </Wrapper>
     );
   }
